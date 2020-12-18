@@ -2,7 +2,9 @@
 	<div id="app">
 		<h1>Tarefas</h1>
 		<NewTask @taskAdded="addTask($event)"/>
-		<TaksGrid :tasks="tasks"/>
+		<TaksGrid
+		@taskDeleted="deleteTask"
+		:tasks="tasks"/>
 	</div>
 </template>
 
@@ -15,8 +17,8 @@ export default {
 	data(){
 		return{
 			tasks:[
-				{name: 'Assisir video aulas', pending: false},
-				{name: 'Fazer exercícios', pending: true},
+				// {name: 'Assisir video aulas', pending: false},
+				// {name: 'Fazer exercícios', pending: true},
 			]
 		}
 	},
@@ -34,6 +36,13 @@ export default {
 			}else{
 				alert("Não é permitido adicionar uma tarefa com o nome repetido")
 			}
+		},
+		deleteTask(task){
+			//busca index do tarefa
+			const i = this.tasks.indexOf(task)
+			
+			// deleta tarefa da lista pelo index
+			this.tasks.splice(i,1)
 		}
 	}
 
