@@ -4,6 +4,7 @@
 		<NewTask @taskAdded="addTask($event)"/>
 		<TaksGrid
 		@taskDeleted="deleteTask"
+		@taskStateChanged="toggleTaskState"
 		:tasks="tasks"/>
 	</div>
 </template>
@@ -43,6 +44,12 @@ export default {
 			
 			// deleta tarefa da lista pelo index
 			this.tasks.splice(i,1)
+		},
+		toggleTaskState(task){
+			//busca index do tarefa
+			const i = this.tasks.indexOf(task)			
+
+			this.tasks[i].pending = !this.tasks[i].pending
 		}
 	}
 
