@@ -31,6 +31,8 @@ export default {
 					name: task.name,
 					pending: task.pending || true
 				})
+			}else{
+				alert("Não é permitido adicionar uma tarefa com o nome repetido")
 			}
 		}
 	}
