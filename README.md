@@ -1,4 +1,6 @@
-# todo
+# Gerenciador de tarefas em VueJs
+
+![](video.gif)
 
 ## Project setup
 ```
