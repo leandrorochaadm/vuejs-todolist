@@ -1,14 +1,14 @@
 <template>
 	<div id="app">
 		<h1>Tarefas</h1>
-		<NewTask	/>
+		<NewTask @taskAdded="addTask($event)"/>
 		<TaksGrid :tasks="tasks"/>
 	</div>
 </template>
 
 <script>
-import TaksGrid from './components/TaskGrid.vue'
 import NewTask from './components/NewTask.vue'
+import TaksGrid from './components/TaskGrid.vue'
 
 export default {
 	components: {TaksGrid, NewTask},
@@ -18,6 +18,20 @@ export default {
 				{name: 'Assisir video aulas', pending: false},
 				{name: 'Fazer exercícios', pending: true},
 			]
+		}
+	},
+	methods:{
+		addTask(task){
+			const sameName = t => t.name === task.name
+			const reallyNew = this.tasks.filter(sameName).length == 0
+
+			// verifica se a tarefa é nem nome repetido
+			if(reallyNew){
+				this.tasks.push({
+					name: task.name,
+					pending: task.pending || true
+				})
+			}
 		}
 	}
 
